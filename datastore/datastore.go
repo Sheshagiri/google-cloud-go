@@ -342,7 +342,7 @@ func (c *Client) Get(ctx context.Context, key *Key, dst interface{}) (err error)
 }
 
 // GetEntity gets the low level google.golang.org/genproto/googleapis/datastore/v1 for the given Key.
-func (c *Client) GetEntity(ctx context.Context, key *pb.Key) (entity *pb.Entity, err error) {
+func (c *Client) GetEntity(ctx context.Context, key *Key) (entity *pb.Entity, err error) {
 	ctx = trace.StartSpan(ctx, "cloud.google.com/go/datastore.Get")
 	defer func() { trace.EndSpan(ctx, err) }()
 
