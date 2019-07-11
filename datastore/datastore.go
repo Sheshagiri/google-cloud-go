@@ -343,7 +343,7 @@ func (c *Client) Get(ctx context.Context, key *Key, dst interface{}) (err error)
 
 // GetEntity gets the low level google.golang.org/genproto/googleapis/datastore/v1 for the given Key.
 func (c *Client) GetEntity(ctx context.Context, key *Key) (entity *pb.Entity, err error) {
-	ctx = trace.StartSpan(ctx, "cloud.google.com/go/datastore.Get")
+	ctx = trace.StartSpan(ctx, "cloud.google.com/go/datastore.GetEntity")
 	defer func() { trace.EndSpan(ctx, err) }()
 
 	var pbKey *pb.Key
@@ -545,8 +545,6 @@ func (c *Client) Put(ctx context.Context, key *Key, src interface{}) (*Key, erro
 
 // PutEntity saves the low level google.golang.org/genproto/googleapis/datastore/v1 into the datastore with the given Key.
 func (c *Client) PutEntity(ctx context.Context, key *Key, entity *pb.Entity) (*Key, error) {
-	log.Println("received values are")
-	log.Println(entity.Properties)
 	entity.Key = keyToProto(key)
 	var mut *pb.Mutation
 	if key.Incomplete() {
