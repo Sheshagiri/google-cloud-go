@@ -641,9 +641,6 @@ func putMutations(keys []*Key, src interface{}) ([]*pb.Mutation, error) {
 			elem = elem.Addr()
 		}
 		p, err := saveEntity(k, elem.Interface())
-		log.Println("properties")
-		log.Println(p.Properties)
-		log.Println(p.Key)
 		if err != nil {
 			multiErr[i] = err
 			hasErr = true
